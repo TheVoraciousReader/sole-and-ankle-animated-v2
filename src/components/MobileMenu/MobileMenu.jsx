@@ -78,12 +78,14 @@ const ContentWrapper = styled.div`
 `;
 
 const Content = styled(Dialog.Content)`
+  --overfill: 16px;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   background: white;
-  width: 300px;
+  width: calc(300px + var(--overfill));
+  margin-right: calc(var(--overfill) * -1);
   height: 100%;
   padding: 24px 32px;
   display: flex;
@@ -91,14 +93,13 @@ const Content = styled(Dialog.Content)`
 
   @media ${QUERIES.enableMotion} {
     animation: ${slideIn} 500ms;
-    animation-delay: 200ms;
   }
 `;
 
 const CloseButton = styled(UnstyledButton)`
   position: absolute;
   top: 10px;
-  right: 0;
+  right: var(--overfill);
   padding: 16px;
 `;
 
