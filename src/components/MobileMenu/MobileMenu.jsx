@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import * as Dialog from '@radix-ui/react-dialog';
 
 import { QUERIES, WEIGHTS } from '../../constants';
@@ -14,38 +14,67 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
       <Dialog.Portal>
         <Overlay />
         <Content>
-          <CloseButton onClick={onDismiss}>
-            <Icon id="close" />
-            <VisuallyHidden>Dismiss menu</VisuallyHidden>
-          </CloseButton>
-          <VisuallyHidden>
-            <Dialog.Title>Mobile navigation</Dialog.Title>
-            <Dialog.Description>Mobile navigation</Dialog.Description>
-          </VisuallyHidden>
-          <Filler />
-          <Nav>
-            <NavLink href="/sale">Sale</NavLink>
-            <NavLink href="/new">New&nbsp;Releases</NavLink>
-            <NavLink href="/men">Men</NavLink>
-            <NavLink href="/women">Women</NavLink>
-            <NavLink href="/kids">Kids</NavLink>
-            <NavLink href="/collections">Collections</NavLink>
-          </Nav>
-          <Footer>
-            <SubLink href="/terms">Terms and Conditions</SubLink>
-            <SubLink href="/privacy">Privacy Policy</SubLink>
-            <SubLink href="/contact">Contact Us</SubLink>
-          </Footer>
+          <ContentWrapper>
+            <CloseButton onClick={onDismiss}>
+              <Icon id="close" />
+              <VisuallyHidden>Dismiss menu</VisuallyHidden>
+            </CloseButton>
+            <VisuallyHidden>
+              <Dialog.Title>Mobile navigation</Dialog.Title>
+              <Dialog.Description>Mobile navigation</Dialog.Description>
+            </VisuallyHidden>
+            <Filler />
+            <Nav>
+              <NavLink href="/sale">Sale</NavLink>
+              <NavLink href="/new">New&nbsp;Releases</NavLink>
+              <NavLink href="/men">Men</NavLink>
+              <NavLink href="/women">Women</NavLink>
+              <NavLink href="/kids">Kids</NavLink>
+              <NavLink href="/collections">Collections</NavLink>
+            </Nav>
+            <Footer>
+              <SubLink href="/terms">Terms and Conditions</SubLink>
+              <SubLink href="/privacy">Privacy Policy</SubLink>
+              <SubLink href="/contact">Contact Us</SubLink>
+            </Footer>
+          </ContentWrapper>
         </Content>
       </Dialog.Portal>
     </Dialog.Root>
   );
 };
 
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+const slideIn = keyframes`
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+`;
+
 const Overlay = styled(Dialog.Overlay)`
   position: fixed;
   inset: 0;
   background: var(--color-backdrop);
+  animation: ${fadeIn} 1000ms;
+`;
+
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  animation: ${fadeIn} 600ms both;
+  animation-delay: 200ms;
 `;
 
 const Content = styled(Dialog.Content)`
@@ -59,6 +88,11 @@ const Content = styled(Dialog.Content)`
   padding: 24px 32px;
   display: flex;
   flex-direction: column;
+
+  @media ${QUERIES.enableMotion} {
+    animation: ${slideIn} 500ms;
+    animation-delay: 200ms;
+  }
 `;
 
 const CloseButton = styled(UnstyledButton)`

@@ -90,7 +90,7 @@ const Image = styled.img`
   transition: transform 500ms;
   transform-origin: bottom;
 
-  @media (hover: hover) and ${QUERIES.enableAnimations} {
+  @media (hover: hover) and ${QUERIES.enableMotion} {
     ${Link}:hover &, ${Link}:focus & {
       transform: scale(1.1);
       transition: transform 200ms;

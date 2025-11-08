@@ -31,7 +31,7 @@ const Text = styled.span`
   transition: transform 200ms;
   transform: translateY(var(--translate-from));
 
-  @media (hover: hover) and ${QUERIES.enableAnimations} {
+  @media (hover: hover) and ${QUERIES.enableMotion} {
   ${Wrapper}:hover & {
     transform: translateY(var(--translate-to));
   }
