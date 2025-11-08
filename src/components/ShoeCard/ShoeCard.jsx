@@ -139,9 +139,21 @@ const Flag = styled.div`
 
 const SaleFlag = styled(Flag)`
   background-color: var(--color-primary);
+
+  @media (hover: hover) {
+    ${Link}:hover &, ${Link}:focus & {
+      filter: drop-shadow(2px 2px 4px var(--color-primary));
+    }
+  }
 `;
 const NewFlag = styled(Flag)`
   background-color: var(--color-secondary);
+
+  @media (hover: hover) {
+    ${Link}:hover &, ${Link}:focus & {
+      filter: drop-shadow(2px 2px 4px var(--color-secondary));
+    }
+  }
 `;
 
 export default ShoeCard;
